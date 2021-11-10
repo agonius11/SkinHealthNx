@@ -1,0 +1,72 @@
+{
+  "root": "apps/skinhealthnx",
+  "sourceRoot": "apps/skinhealthnx/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/skinhealthnx",
+        "index": "apps/skinhealthnx/src/index.html",
+        "baseHref": "/",
+        "main": "apps/skinhealthnx/src/main.js",
+        "polyfills": "apps/skinhealthnx/src/polyfills.js",
+        "tsConfig": "apps/skinhealthnx/tsconfig.app.json",
+        "assets": [
+          "apps/skinhealthnx/src/favicon.ico",
+          "apps/skinhealthnx/src/assets"
+        ],
+        "styles": ["apps/skinhealthnx/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/skinhealthnx/src/environments/environment.js",
+              "with": "apps/skinhealthnx/src/environments/environment.prod.js"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "skinhealthnx:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "skinhealthnx:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/skinhealthnx/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/skinhealthnx"],
+      "options": {
+        "jestConfig": "apps/skinhealthnx/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
